@@ -17,6 +17,8 @@ using namespace std;
  IMPLEMENT FUCK ALL MAN
 
  FOR ALL INTENTS AND PURPOSES, WE DONT REALLY NEED TO CARE ABT MEMORY LEAKS CUZ WHO GIVES A SHIET
+
+ brrrrrr
 ****************************************/
 
 void insertSimpleProducts(DLLProducts &L){
