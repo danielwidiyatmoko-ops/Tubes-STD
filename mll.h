@@ -20,6 +20,7 @@ typedef struct DLLProductsNode *DLLProductsNodePtr; //pointer to DLL Products No
 SLL             |           |--------
    |            v           v
     first -> [ PNode ] <> [ PNode ] -> last
+
  ***********************/
 struct MLLCustomerNode {
     infotypeCustomer info;                      
