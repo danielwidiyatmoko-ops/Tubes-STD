@@ -20,6 +20,7 @@ typedef struct DLLProductsNode *DLLProductsNodePtr; //pointer to DLL Products No
 SLL             |           |--------
    |            v           v
     first -> [ PNode ] <> [ PNode ] -> last
+
  ***********************/
 int TOTALCUSTOMERS = 0; //global variable to keep track of total customers for ID assignment
 int TOTALPRODUCTS = 0; //global variable to keep track of total products for ID assignment
