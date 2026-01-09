@@ -21,6 +21,10 @@ SLL             |           |--------
    |            v           v
     first -> [ PNode ] <> [ PNode ] -> last
  ***********************/
+int TOTALCUSTOMERS = 0; //global variable to keep track of total customers for ID assignment
+int TOTALPRODUCTS = 0; //global variable to keep track of total products for ID assignment
+//may not be the best practice but whatever for this simple project it's fine
+//STRUCTS FOR THE LISTS
 struct MLLCustomerNode {
     infotypeCustomer info;                      
     MLLShoppingCartNodePtr firstChild;       
@@ -58,6 +62,7 @@ struct DLLProducts {
     DLLProductsNodePtr first; // Pointer to the head of the products list
     DLLProductsNodePtr last;  // Pointer to the tail of the products list
 };
+//FUNCTION PROTOTYPES
 void createEmptyMLL(MLLCustomerData &L);
 void createEmptyDLL(DLLProducts &L);
 MLLCustomerNodePtr createCustomerNode(infotypeCustomer info);
@@ -66,4 +71,17 @@ DLLProductsNodePtr createProductNode(infotypeProducts data);
 void insertCustomerNode(MLLCustomerData &L, MLLCustomerNodePtr p);
 void insertShoppingCartNode(MLLCustomerNodePtr parent, MLLShoppingCartNodePtr c);
 void insertProductNode(DLLProducts &L, DLLProductsNodePtr p);
+MLLShoppingCartNodePtr deleteShoppingCartNode(MLLCustomerNodePtr parent, int productID);
+DLLProductsNodePtr deleteProductNode(DLLProducts &L, int productID);
+void printCustomers(MLLCustomerData L);
+int printShoppingCart(MLLCustomerNodePtr L);
+void printProducts(DLLProducts L);
+MLLCustomerNodePtr findCustomerByID(MLLCustomerData L, int customerID);
+MLLShoppingCartNodePtr findCartItemByProductID(MLLCustomerNodePtr parent, int productID);
+MLLShoppingCartNodePtr findCartItemByProductName(MLLCustomerNodePtr parent, string productName);
+DLLProductsNodePtr findProductByID(DLLProducts L, int productID);
+DLLProductsNodePtr findProductByName(DLLProducts L, string productName);
+void editCustomerInfo(MLLCustomerNodePtr customer,int code, string newName, string newPassword);
+void editCartItemQuantity(MLLShoppingCartNodePtr cartItem, int newQuantitytoAdd);
+void editProductInfo(DLLProductsNodePtr product, int code, string newName, int newStock, int newPrice);
 #endif // MLL_H_INCLUDED
