@@ -12,6 +12,8 @@ using namespace std;
 
  ADD SOME BASIC PRODUCTS SO THAT THERES SOMETHING TO DISPLAY (CURRENTLY DOING IT IN THE insertSimpleProducts)
 
+ MAKE SURE YOU CAN APPEND DATA ON THE PRODUCTS AND SEEIF OUT OF STOCK OR NO.
+
  IMPLEMENT FUCK ALL MAN
 
  FOR ALL INTENTS AND PURPOSES, WE DONT REALLY NEED TO CARE ABT MEMORY LEAKS CUZ WHO GIVES A SHIET
@@ -28,9 +30,16 @@ void insertSimpleProducts(DLLProducts &L){
     i.productID = 2;
     i.productName = "Sira Rito Roti Tawar 10Pcs";
     i.stock = 50;
-    i.price = 3500;
+    i.price = 15000;
     p = createProductNode(i);
     insertProductNode(L,p);
+    i.productID = 3;
+    i.productName = "NiceKafe Latte 222ml";
+    i.stock = 50;
+    i.price = 11000;
+    p = createProductNode(i);
+    insertProductNode(L,p);
+
 }
 int main() {
     MLLCustomerData CustomerData;

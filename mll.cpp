@@ -112,14 +112,14 @@ void printCustomers(MLLCustomerData L){ //prints out customer info for admins
 void printShoppingCart(MLLCustomerNode L){ //prints out things in shopping cart for customers
     MLLShoppingCartNodePtr p = L.firstChild;
     while(p != nullptr){
-        printf("%-4d \t| %30s | %-4d \n",p->data.product->data.productID, p->data.product->data.productName,p->data.quantity);
+        printf("%-4d \t| %30s | %-4d | Rp%7d\n",p->data.product->data.productID, p->data.product->data.productName, p->data.quantity, p->data.product->data.price); //i am so sorry for this mess thisis what happens when you connect a linked list to another linked list ;-;
         p = p->next;
     }
 }
 void printProducts(DLLProducts L){
     DLLProductsNodePtr p = L.first;
     while(p != nullptr){
-        printf("%-4d \t| %30s | %-4d \n",p->data.productID, p->data.productName,p->data.stock,p->data.price);
+        printf("%-4d \t| %30s | %-4d | Rp%7d\n",p->data.productID, p->data.productName,p->data.stock,p->data.price);
         p = p->next;
     }
 }
