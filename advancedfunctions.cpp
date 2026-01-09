@@ -41,13 +41,14 @@ void editProductInfo(DLLProductsNodePtr product, int code, string newName, int n
             product->data.price = newPrice;
             break;
         case 4:
-            product->data.productName = newName;
             if(product->data.stock + newStock >= 0){
+                product->data.productName = newName;
                 product->data.stock += newStock;
+                product->data.price = newPrice;
             } else {
                 cout << "Stok tidak boleh negatif." << endl;
             }
-            product->data.price = newPrice;
+            
             break;
         default:
             break;
@@ -129,3 +130,4 @@ void purchaseCartItems(MLLCustomerNodePtr customer){ //processes purchase of all
         cout << "Pembelian dibatalkan." << endl;
     }
 }
+//WHAT ELSE DO WE NEED?
