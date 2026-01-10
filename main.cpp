@@ -1,4 +1,5 @@
 #include "mll.h"
+#include "ui.h"
 using namespace std;
 /****************************************
  TOKO ONLINE TELU JEMPOL
@@ -27,14 +28,14 @@ int main() {
     createEmptyMLL(CustomerData);
     createEmptyDLL(ProductsList);
     insertSimpleProducts(ProductsList);
-    printProducts(ProductsList);
+    /*printProducts(ProductsList);
     DLLProductsNodePtr p = findProductByID(ProductsList, 2);
     editProductInfo(p,3,"",0,16500);
     printProducts(ProductsList);
     p = findProductByID(ProductsList, 3);
     editProductInfo(p,4,"teto_dapoteto",-25,12500);
-    printProducts(ProductsList);
-
+    printProducts(ProductsList); this was for testing if the shit works. just in case*/ 
+    uikece(CustomerData, ProductsList);
     cout << "Terima Kasih, Sampai Jumpa!" << endl;
     return 0;
 }
