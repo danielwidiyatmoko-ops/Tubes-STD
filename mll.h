@@ -1,6 +1,8 @@
 #ifndef MLL_H_INCLUDED
 #define MLL_H_INCLUDED
 
+#include <iostream>
+#include <string>
 using namespace std;
 // primitive data structure for the Multi-Level Linked List (can be turned to a graph if you want so thats cool)
 typedef struct MLLCustomerNode *MLLCustomerNodePtr; //pointer to MLL Customer Node which are users
@@ -22,6 +24,23 @@ SLL             |           |--------
     first -> [ PNode ] <> [ PNode ] -> last
 
  ***********************/
+ //may not be the best practice but whatever for this simple project it's fine
+//STRUCTS FOR THE LISTS
+struct infotypeCustomer{ //infotype for customer/user
+    int id;
+    string name;
+    string password;
+};
+struct infotypeShoppingCart{ //infotype for product in shopping cart
+    DLLProductsNodePtr product; //pointer to the product in the DLL
+    int quantity;
+};
+struct infotypeProducts{
+    int productID;
+    string productName;
+    int stock;
+    int price;
+};
 struct MLLCustomerNode {
     infotypeCustomer info;                      
     MLLShoppingCartNodePtr firstChild;       
@@ -36,22 +55,6 @@ struct DLLProductsNode { //double linked list for products
     DLLProductsNodePtr next;
     DLLProductsNodePtr prev;
 };
-struct infotypeCustomer { //infotype for customer/user
-    int id;
-    string name;
-    string password;
-};
-
-struct infotypeShoppingCart { //infotype for product in shopping cart
-    DLLProductsNodePtr product; //pointer to the product in the DLL
-    int quantity;
-};
-struct infotypeProducts{
-    int productID;
-    string productName;
-    int stock;
-    int price;
-};
 struct MLLCustomerData {
     MLLCustomerNodePtr first;      // Pointer to the head of the parent node list
 };
@@ -59,6 +62,7 @@ struct DLLProducts {
     DLLProductsNodePtr first; // Pointer to the head of the products list
     DLLProductsNodePtr last;  // Pointer to the tail of the products list
 };
+//FUNCTION PROTOTYPES
 void createEmptyMLL(MLLCustomerData &L);
 void createEmptyDLL(DLLProducts &L);
 MLLCustomerNodePtr createCustomerNode(infotypeCustomer info);
@@ -67,4 +71,26 @@ DLLProductsNodePtr createProductNode(infotypeProducts data);
 void insertCustomerNode(MLLCustomerData &L, MLLCustomerNodePtr p);
 void insertShoppingCartNode(MLLCustomerNodePtr parent, MLLShoppingCartNodePtr c);
 void insertProductNode(DLLProducts &L, DLLProductsNodePtr p);
+MLLShoppingCartNodePtr deleteShoppingCartNode(MLLCustomerNodePtr parent, int productID);
+DLLProductsNodePtr deleteProductNode(DLLProducts &L, int productID);
+void printCustomers(MLLCustomerData L);
+int printShoppingCart(MLLCustomerNodePtr L);
+void printProducts(DLLProducts L);
+MLLCustomerNodePtr findCustomerByID(MLLCustomerData L, int customerID);
+MLLShoppingCartNodePtr findCartItemByProductID(MLLCustomerNodePtr parent, int productID);
+MLLShoppingCartNodePtr findCartItemByProductName(MLLCustomerNodePtr parent, string productName);
+DLLProductsNodePtr findProductByID(DLLProducts L, int productID);
+DLLProductsNodePtr findProductByName(DLLProducts L, string productName);
+//ADVANCED FUNCTIONS
+void editCustomerInfo(MLLCustomerNodePtr customer,int code, string newName, string newPassword);
+void editCartItemQuantity(MLLShoppingCartNodePtr cartItem, int newQuantitytoAdd);
+void editCustomerInfo(MLLCustomerNodePtr customer,int code, string newName, string newPassword);
+void editCartItemQuantity(MLLShoppingCartNodePtr cartItem, int newQuantitytoAdd);
+void editProductInfo(DLLProductsNodePtr product, int code, string newName, int newStock, int newPrice);
+void addProducts(DLLProducts &L, string nama, int stock, int price);
+void addCustomer(MLLCustomerData &L, string nama, string password);
+void addProductToCart(MLLCustomerNodePtr customer, DLLProductsNodePtr product, int quantity);
+MLLCustomerNodePtr loginCustomer(MLLCustomerData L, string name, string password); 
+void purchaseCartItems(MLLCustomerNodePtr customer);
+void insertSimpleProducts(DLLProducts &L);
 #endif // MLL_H_INCLUDED
