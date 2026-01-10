@@ -74,6 +74,7 @@ void addCustomer(MLLCustomerData &L, string nama, string password){//adds custom
     info.id = TOTALCUSTOMERS++;
     info.name = nama;
     info.password = password;
+    MLLCustomerNodePtr p = find
     MLLCustomerNodePtr p = createCustomerNode(info);
     insertCustomerNode(L, p);
 }

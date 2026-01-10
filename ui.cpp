@@ -53,7 +53,7 @@ void uikece(MLLCustomerData &L, DLLProducts &P){
             else if (loginChoice == 2) {
                 int userMenu;
                 do {
-                    cout << "\nUSER PAGE\n"; //same thing with the admin page part, split itto a uikeceuser() function.
+                    cout << "\nUSER PAGE\n"; //same thing with the admin page part, split itto a uikeceuser() function. and also since there could be multiple users, thi
                     cout << "1. Lihat Produk\n";
                     cout << "2. Lihat Keranjang\n";
                     cout << "3. Beli\n";

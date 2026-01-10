@@ -77,6 +77,7 @@ void printCustomers(MLLCustomerData L);
 int printShoppingCart(MLLCustomerNodePtr L);
 void printProducts(DLLProducts L);
 MLLCustomerNodePtr findCustomerByID(MLLCustomerData L, int customerID);
+MLLCustomerNodePtr findCustomerByName(MLLCustomerData L, string name);
 MLLShoppingCartNodePtr findCartItemByProductID(MLLCustomerNodePtr parent, int productID);
 MLLShoppingCartNodePtr findCartItemByProductName(MLLCustomerNodePtr parent, string productName);
 DLLProductsNodePtr findProductByID(DLLProducts L, int productID);

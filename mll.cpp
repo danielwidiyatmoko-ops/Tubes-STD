@@ -143,6 +143,17 @@ MLLCustomerNodePtr findCustomerByID(MLLCustomerData L, int customerID) {//finds 
     }
     return nullptr; // Customer not found
 }
+MLLCustomerNodePtr findCustomerByName(MLLCustomerData L, string name) {//finds customer node in MLL by customer ID, returns the node pointer if found, nullptr if not found
+    MLLCustomerNodePtr p = L.first;
+    while (p != nullptr) {
+        if (p->info.name == name) {
+            return p; // Customer found
+        }
+        p = p->next;
+    }
+    return nullptr; // Customer not found
+}
+
 MLLShoppingCartNodePtr findCartItemByProductID(MLLCustomerNodePtr parent, int productID) {//finds shopping cart node in a customer's shopping cart by product ID, returns the node pointer if found, nullptr if not found
     MLLShoppingCartNodePtr c = parent->firstChild;
     while (c != nullptr) {
