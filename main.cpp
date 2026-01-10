@@ -36,6 +36,8 @@ int main() {
     editProductInfo(p,4,"teto_dapoteto",-25,12500);
     printProducts(ProductsList); this was for testing if the shit works. just in case*/ 
     uikece(CustomerData, ProductsList);
+    printCustomers(CustomerData);
+    printProducts(ProductsList);
     cout << "Terima Kasih, Sampai Jumpa!" << endl;
     return 0;
 }

@@ -76,7 +76,6 @@ void uikece(MLLCustomerData &L, DLLProducts &P){
             cout << "Password: ";
             cin >> pw;
             addCustomer(L,uname,pw);
-            cout << "Signup Successful.\n";
         }
 
     } while (mainChoice != 0);

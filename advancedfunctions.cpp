@@ -65,18 +65,20 @@ void addProducts(DLLProducts &L, string nama, int stock, int price){ //adds prod
     if(findProductByName(L, data.productName) == nullptr){
         DLLProductsNodePtr p = createProductNode(data);
         insertProductNode(L, p); //what other stupid edge case am i missing?
+        cout << "Tambahan Produk Berhasil\n";
     }else{
         cout << "Produk dengan nama tersebut sudah ada." << endl; 
     }
 }
 void addCustomer(MLLCustomerData &L, string nama, string password){//adds customer to customer data
     infotypeCustomer info;
-    info.id = TOTALCUSTOMERS++;
     info.name = nama;
     info.password = password;
     if(findCustomerByName(L,nama) ==nullptr){
+        info.id = TOTALCUSTOMERS++;
         MLLCustomerNodePtr p = createCustomerNode(info);
         insertCustomerNode(L, p);
+        cout << "Signup Berhasil\n";
     }else{
         cout << "User dengan nama tersebut sudah ada." << endl; 
     }
@@ -85,6 +87,7 @@ void addProductToCart(MLLCustomerNodePtr customer, DLLProductsNodePtr product, i
     MLLShoppingCartNodePtr existingItem = findCartItemByProductID(customer, product->data.productID);
     if(existingItem != nullptr){
         editCartItemQuantity(existingItem, quantity); //add quantity if already in cart
+        cout << "Editan Berhasil\n";
     } else {
         if(product->data.stock >= quantity){
             infotypeShoppingCart cartItemData;
