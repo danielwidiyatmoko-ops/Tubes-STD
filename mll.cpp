@@ -1,4 +1,3 @@
-#include <iostream>
 #include "mll.h"
 using namespace std;
 //CREATING/INITIALIZING THE LISTS
@@ -110,16 +109,16 @@ void printCustomers(MLLCustomerData L){ //prints out customer info; for admins
     MLLCustomerNodePtr p = L.first;
     printf("%-4s \t| %s\n","ID","Name");
     while(p != nullptr){
-        printf("%-4d \t| %s\n",p->info.id, p->info.name);
+        printf("%-4d \t| %s\n",p->info.id, p->info.name.c_str());
         p = p->next;
     }
 }
 int printShoppingCart(MLLCustomerNodePtr L){ //prints out things in shopping cart; for customers; also counts total price and returns it
     MLLShoppingCartNodePtr p = L->firstChild;
     int totalPrice = 0;
-    printf("%-4s \t| %30s | %-4s | %-7s\n","ID","Product Name","Qty","Total Price");
+    printf("%-4s \t| %30s | %-6s | %-7s\n","ID","Product Name","Qty","Total Price");
     while(p != nullptr){
-        printf("%-4d \t| %30s | %-4d | Rp%7d\n",p->data.product->data.productID, p->data.product->data.productName, p->data.quantity, p->data.product->data.price * p->data.quantity); //i am so sorry for this mess thisis what happens when you connect a linked list to another linked list ;-;
+        printf("%-4d \t| %30s | %-6d | Rp%7d\n",p->data.product->data.productID, p->data.product->data.productName.c_str(), p->data.quantity, p->data.product->data.price * p->data.quantity); //i am so sorry for this mess thisis what happens when you connect a linked list to another linked list ;-;
         totalPrice += p->data.product->data.price * p->data.quantity;
         p = p->next;
     }
@@ -127,9 +126,9 @@ int printShoppingCart(MLLCustomerNodePtr L){ //prints out things in shopping car
 }
 void printProducts(DLLProducts L){ //prints out products in the products list; for admins and customers
     DLLProductsNodePtr p = L.first;
-    printf("%-4s \t| %30s | %-4s | %-7s\n","ID","Product Name","Stock","Price");
+    printf("%-4s | %30s | %-6s | %-7s\n","ID","Product Name","Stock","Price");
     while(p != nullptr){
-        printf("%-4d \t| %30s | %-4d | Rp%7d\n",p->data.productID, p->data.productName,p->data.stock,p->data.price);
+        printf("%-4d | %30s | %-6d | Rp%-7d\n",p->data.productID, p->data.productName.c_str(),p->data.stock,p->data.price);
         p = p->next;
     }
 }

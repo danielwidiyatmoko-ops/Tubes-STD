@@ -1,4 +1,3 @@
-#include <iostream>
 #include "mll.h"
 using namespace std;
 /****************************************
@@ -21,34 +20,21 @@ using namespace std;
  brrrrrr
 ****************************************/
 
-void insertSimpleProducts(DLLProducts &L){
-    infotypeProducts i;
-    i.productID = 1;
-    i.productName = "Aqoa_Mineral_Watre_670ml";
-    i.stock = 150;
-    i.price = 3500;
-    DLLProductsNodePtr p = createProductNode(i);
-    insertProductNode(L,p);
-    i.productID = 2;
-    i.productName = "Sira_Rito_Roti_Tawar_10Pcs";
-    i.stock = 50;
-    i.price = 15000;
-    p = createProductNode(i);
-    insertProductNode(L,p);
-    i.productID = 3;
-    i.productName = "NiceKafe_Latte_222ml";
-    i.stock = 50;
-    i.price = 11000;
-    p = createProductNode(i);
-    insertProductNode(L,p);
 
-}
 int main() {
     MLLCustomerData CustomerData;
     DLLProducts ProductsList;
     createEmptyMLL(CustomerData);
     createEmptyDLL(ProductsList);
+    insertSimpleProducts(ProductsList);
+    printProducts(ProductsList);
+    DLLProductsNodePtr p = findProductByID(ProductsList, 2);
+    editProductInfo(p,3,"",0,16500);
+    printProducts(ProductsList);
+    p = findProductByID(ProductsList, 3);
+    editProductInfo(p,4,"teto_dapoteto",-25,12500);
+    printProducts(ProductsList);
 
-    cout << "Hello, World!" << endl;
+    cout << "Terima Kasih, Sampai Jumpa!" << endl;
     return 0;
 }

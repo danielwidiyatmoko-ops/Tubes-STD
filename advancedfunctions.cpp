@@ -1,6 +1,7 @@
-#include <iostream>
 #include "mll.h"
 using namespace std;
+int TOTALCUSTOMERS = 0; //global variable to keep track of total customers for ID assignment
+int TOTALPRODUCTS = 0; //global variable to keep track of total products for ID assignment
 
 //EDIT NODES IN THE LISTS
 void editCustomerInfo(MLLCustomerNodePtr customer,int code, string newName, string newPassword) { // edits information of customer; code 1 = name, 2 = password, 3 = both
@@ -129,5 +130,27 @@ void purchaseCartItems(MLLCustomerNodePtr customer){ //processes purchase of all
     } else {
         cout << "Pembelian dibatalkan." << endl;
     }
+}
+void insertSimpleProducts(DLLProducts &L){ //inserting some simple products at startup
+    infotypeProducts i;
+    i.productID = 1;
+    i.productName = "Aqoa_Mineral_Watre_670ml";
+    i.stock = 150;
+    i.price = 3500;
+    DLLProductsNodePtr p = createProductNode(i);
+    insertProductNode(L,p);
+    i.productID = 2;
+    i.productName = "Sira_Rito_Roti_Tawar_10Pcs";
+    i.stock = 50;
+    i.price = 15000;
+    p = createProductNode(i);
+    insertProductNode(L,p);
+    i.productID = 3;
+    i.productName = "NiceKafe_Latte_222ml";
+    i.stock = 50;
+    i.price = 11000;
+    p = createProductNode(i);
+    insertProductNode(L,p);
+
 }
 //WHAT ELSE DO WE NEED?
