@@ -3,5 +3,5 @@
 #include <iostream>
 #include "mll.h"
 using namespace std;
-void uikece(MLLCustomerData &L, DLLProducts &P);i
+void uikece(MLLCustomerData &L, DLLProducts &P);
 #endif // UI_H_INCLUDED

@@ -74,9 +74,12 @@ void addCustomer(MLLCustomerData &L, string nama, string password){//adds custom
     info.id = TOTALCUSTOMERS++;
     info.name = nama;
     info.password = password;
-    MLLCustomerNodePtr p = find
-    MLLCustomerNodePtr p = createCustomerNode(info);
-    insertCustomerNode(L, p);
+    if(findCustomerByName(L,nama) ==nullptr){
+        MLLCustomerNodePtr p = createCustomerNode(info);
+        insertCustomerNode(L, p);
+    }else{
+        cout << "User dengan nama tersebut sudah ada." << endl; 
+    }
 }
 void addProductToCart(MLLCustomerNodePtr customer, DLLProductsNodePtr product, int quantity){//adds product to customer's shopping cart after checking if product is already in cart
     MLLShoppingCartNodePtr existingItem = findCartItemByProductID(customer, product->data.productID);
