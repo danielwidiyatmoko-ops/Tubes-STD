@@ -83,7 +83,7 @@ void addCustomer(MLLCustomerData &L, string nama, string password){//adds custom
         cout << "User dengan nama tersebut sudah ada." << endl; 
     }
 }
-void addProductToCart(MLLCustomerNodePtr customer, DLLProductsNodePtr product, int quantity){//adds product to customer's shopping cart after checking if product is already in cart
+void addProductToCart(MLLCustomerNodePtr &customer, DLLProductsNodePtr product, int quantity){//adds product to customer's shopping cart after checking if product is already in cart
     MLLShoppingCartNodePtr existingItem = findCartItemByProductID(customer, product->data.productID);
     if(existingItem != nullptr){
         editCartItemQuantity(existingItem, quantity); //add quantity if already in cart
@@ -117,7 +117,7 @@ MLLCustomerNodePtr loginCustomer(MLLCustomerData L, string name, string password
 }
 
 //logout is kinda unnecessary since we are not maintaining sessions or anything; automatically handled in main program flow when user decides to logout
-void purchaseCartItems(MLLCustomerNodePtr customer){ //processes purchase of all items in customer's shopping cart, stock availability is confirmed during adding to cart since this is a simple project
+void purchaseCartItems(MLLCustomerNodePtr &customer){ //processes purchase of all items in customer's shopping cart, stock availability is confirmed during adding to cart since this is a simple project
     int total = printShoppingCart(customer);
     cout << "Total Biaya: Rp" << total << endl;
     cout << "Apakah anda ingin Confirm? Y/N" << endl;

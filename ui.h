@@ -4,4 +4,6 @@
 #include "mll.h"
 using namespace std;
 void uikece(MLLCustomerData &L, DLLProducts &P);
+void uikeceuser(MLLCustomerNodePtr &C, DLLProducts &L);
+void uikeceadmin(MLLCustomerData &C, DLLProducts &L);
 #endif // UI_H_INCLUDED

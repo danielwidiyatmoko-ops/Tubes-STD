@@ -90,8 +90,8 @@ void editCartItemQuantity(MLLShoppingCartNodePtr cartItem, int newQuantitytoAdd)
 void editProductInfo(DLLProductsNodePtr product, int code, string newName, int newStock, int newPrice);
 void addProducts(DLLProducts &L, string nama, int stock, int price);
 void addCustomer(MLLCustomerData &L, string nama, string password);
-void addProductToCart(MLLCustomerNodePtr customer, DLLProductsNodePtr product, int quantity);
+void addProductToCart(MLLCustomerNodePtr &customer, DLLProductsNodePtr product, int quantity);
 MLLCustomerNodePtr loginCustomer(MLLCustomerData L, string name, string password); 
-void purchaseCartItems(MLLCustomerNodePtr customer);
+void purchaseCartItems(MLLCustomerNodePtr &customer);
 void insertSimpleProducts(DLLProducts &L);
 #endif // MLL_H_INCLUDED
