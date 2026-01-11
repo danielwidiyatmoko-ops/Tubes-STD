@@ -1,5 +1,5 @@
 # Tubes-STD
-Tugas Besar Struktur Data oleh Benedictus Daniel Widiyatmoko (103012400209) dan [Insert Name and Nim here Okay]
+Tugas Besar Struktur Data oleh Benedictus Daniel Widiyatmoko (103012400209) dan Arsha Athallah Putra Satya (103012400062)
 
 Program yang kita buat adalah program management toko online yang simpel bernama Toko Online TelU Jempol.
 Dalam Program ini, anda dapat menggunakan 2 roles: Admin dan Buyers.
