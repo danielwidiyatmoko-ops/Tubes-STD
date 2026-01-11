@@ -49,6 +49,8 @@ void uikece(MLLCustomerData &L, DLLProducts &P){
                 MLLCustomerNodePtr user = loginCustomer(L,uname,pw);
                 if(user != nullptr){
                     uikeceuser(user,P);
+                } else{
+                    cout <<"Uername atau  password salah.\n"
                 }
             }
         } else if (mainChoice == 2) { //signups are fine done in here cuz its short and simple
@@ -77,26 +79,58 @@ void uikeceuser(MLLCustomerNodePtr &C, DLLProducts &L){
         cin >> userMenu;
 
         switch(userMenu){
+
             case 1:
                 printProducts(L);
                 //actions that you can do when you see products here (buy the item as much as n or go back)
-                cout << "--- Aksi ---\n";
-                cout << "1. Beli Barang\n";
-                cout << "0. Back\n";
-                break;
+                    cout << "\n--- Produk ---\n";
+                    cout << "1. Tambah ke Keranjang\n";
+                    cout << "0. Back\n";
+                    cout << "Pilihan: ";
+                    cin >>
+
+                    if (action == 1) {
+                        cout << "Masukkan ID Produk: ";
+                        cin >> productID;
+                        cout << "Jumlah: ";
+                        cin >> qty;
+
+                        DLLProductsNodePtr prod = findProductByID(L, productID);
+                        if (prod != nullptr) {
+                            addProductToCart(C, prod, qty);
+                            cout << "Produk ditambahkan ke keranjang.\n";
+                        } else {
+                            cout << "Produk tidak ditemukan.\n";
+                        }
+                    }
+                    break;
+                    }
             case 2:
-                printShoppingCart(C);
                 //action that you can do with shopping cart (add, decrease, etc)
+                int total = printShoppingCart(C);
+                cout << "Total sementara: Rp" << total << endl;
                 break;
             case 3:
-                purchaseCartItems(C);
                 //this just buys everything in the cart. the fucntion is already implemented.
+                int confirm;
+                int total = printShoppingCart(C);
+
+                cout << "Total bayar: Rp" << total << endl;
+                cout << "1. Konfirmasi Checkout\n";
+                cout << "0. Batal\n";
+                cout << "Pilihan: ";
+                cin >> confirm;
+
+                if (confirm == 1) {
+                    purchaseCartItems(C);
+                }
                 break;
+
             case 0:
                 cout << "Logout Successful\n";
                 break;
             default:
-                cout <<"Pilihat Tidak ada. Mohon coba lagi.\n";
+                cout <<"Pilihan Tidak ada. Mohon coba lagi.\n";
                 break;
         }
 
@@ -122,17 +156,39 @@ void uikeceadmin(MLLCustomerData &C, DLLProducts &L){
                 break;
             case 2:
                 printProducts(L);
-                //actions to manage products (add, edit, delete)
-                break;
+                
+                cout << "\n--- Aksi Produk ---\n";
+                cout << "1. Tambah Produk\n";
+                cout << "0. Back\n";
+                cout << "Pilihan: ";
+                cin >> action;
+
+                if (action == 1) {
+                string nama;
+                int stock, price;
+
+                cout << "Nama Produk: ";
+                cin.ignore();
+                getline(cin, nama);
+                cout << "Stock: ";
+                cin >> stock;
+                cout << "Harga: ";
+                cin >> price;
+
+        addProducts(L, nama, stock, price);
+        cout << "Produk berhasil ditambahkan.\n";
+    }
+    break;
+}
             case 3:
                 printCustomers(C);
                 //action to do with customers (edit name, pw, maybe delete)
                 break;
             case 0:
-                cout << "Logout Successful\n";
+                cout << "Logout Berhasil\n";
                 break;
             default:
-                cout <<"Pilihat Tidak ada. Mohon coba lagi.\n";
+                cout <<"Pilihan Tidak ada. Mohon coba lagi.\n";
                 break;
         }
     } while (adminMenu != 0);
