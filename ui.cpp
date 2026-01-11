@@ -66,7 +66,9 @@ void uikece(MLLCustomerData &L, DLLProducts &P){
     } while (mainChoice != 0);
 }
 void uikeceuser(MLLCustomerNodePtr &C, DLLProducts &L){
-    int userMenu;
+    int userMenu, action, total, productID, qty;
+    DLLProductsNodePtr prod;
+    MLLShoppingCartNodePtr cartitem;
     do {
         cout << "\n=============================\n";
         cout << "USER PAGE\n"; //same thing with the admin page part, split itto a uikeceuser() function. and also since there could be multiple users, thi
@@ -79,8 +81,6 @@ void uikeceuser(MLLCustomerNodePtr &C, DLLProducts &L){
         cin >> userMenu;
         switch(userMenu){
         case 1:
-            int action;
-            int total;
             printProducts(L);
             //actions that you can do when you see products here (buy the item as much as n or go back)
             cout << "\n--- Produk ---\n";
@@ -90,16 +90,14 @@ void uikeceuser(MLLCustomerNodePtr &C, DLLProducts &L){
             cin >> action;
 
             if (action == 1) {
-                int productID, qty;
                 cout << "Masukkan ID Produk: ";
                 cin >> productID;
                 cout << "Jumlah: ";
                 cin >> qty;
 
-                DLLProductsNodePtr prod = findProductByID(L, productID);
+                prod = findProductByID(L, productID);
                 if (prod != nullptr) {
                     addProductToCart(C, prod, qty);
-                    cout << "Produk ditambahkan ke keranjang.\n";
                 } else {
                     cout << "Produk tidak ditemukan.\n";
                 }
@@ -109,22 +107,30 @@ void uikeceuser(MLLCustomerNodePtr &C, DLLProducts &L){
             //action that you can do with shopping cart (add, decrease, etc)
             total = printShoppingCart(C);
             cout << "Total sementara: Rp" << total << endl;
+            cout << "\n--- Keranjang ---\n";
+            cout << "1. Ubah Jumlah\n";
+            cout << "0. Back\n";
+            cout << "Pilihan: ";
+            cin >> action;
+            switch(action){
+                case 1:
+                    cout << "Masukkan ID Produk: ";
+                    cin >> productID;
+                    cout << "Jumlah: ";
+                    cin >> qty;
+                    cartitem = findCartItemByProductID(C, productID);
+                    if(cartitem != nullptr){
+                        editCartItemQuantity(cartitem,qty);
+                    }
+                    break;
+                default:
+                    //do nothing i guess just go back
+                    break;
+            }
             break;
         case 3:
             //this just buys everything in the cart. the fucntion is already implemented.
-            int confirm;
-            total = printShoppingCart(C);
-
-            cout << "Total bayar: Rp" << total << endl;
-            cout << "1. Konfirmasi Checkout\n";
-            cout << "0. Batal\n";
-            cout << "Pilihan: ";
-            cin >> confirm;
-
-            if (confirm == 1) {
-                purchaseCartItems(C);
-            }
-            break;
+            purchaseCartItems(C);
         case 0:
             cout << "Logout Successful\n";
             break;
