@@ -8,4 +8,4 @@ Buyers hanya bertugas untuk membeli barang lewat menambah ke shopping cart, dan 
 
 Implementasi program ini adalah menggunakan Multi Linked List untuk Pengguna dan Shopping Cartnya dan sebuah Double Linked List untuk produk-poduk yang dijual
 
-cara compilenya: g++ .\main.cpp .\mll.cpp .\advancedfunctions.cpp .\ui.cpp -o .\test p
+cara compilenya: g++ .\main.cpp .\mll.cpp .\advancedfunctions.cpp .\ui.cpp -o .\test
