@@ -1,7 +1,5 @@
 #include "mll.h"
 using namespace std;
-int TOTALCUSTOMERS = 0; //global variable to keep track of total customers for ID assignment
-int TOTALPRODUCTS = 0; //global variable to keep track of total products for ID assignment
 
 //EDIT NODES IN THE LISTS
 void editCustomerInfo(MLLCustomerNodePtr customer,int code, string newName, string newPassword) { // edits information of customer; code 1 = name, 2 = password, 3 = both
@@ -58,11 +56,11 @@ void editProductInfo(DLLProductsNodePtr product, int code, string newName, int n
 //PROPER APPLICATION OF FUNCTIONS WITH CHECKS
 void addProducts(DLLProducts &L, string nama, int stock, int price){ //adds product to products list after checking if product ID already exists
     infotypeProducts data;
-    data.productID = TOTALPRODUCTS++;
     data.productName = nama;
     data.stock = stock;
     data.price = price;
     if(findProductByName(L, data.productName) == nullptr){
+        data.productID = TOTALPRODUCTS++;
         DLLProductsNodePtr p = createProductNode(data);
         insertProductNode(L, p); //what other stupid edge case am i missing?
         cout << "Tambahan Produk Berhasil\n";

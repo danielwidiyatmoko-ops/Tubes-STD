@@ -77,6 +77,7 @@ void uikeceuser(MLLCustomerNodePtr &C, DLLProducts &L){
         cout << "2. Lihat Keranjang\n";
         cout << "3. Beli\n";
         cout << "0. Logout\n";
+        cout << "=============================\n";
         cout << "Pilihan: ";
         cin >> userMenu;
         switch(userMenu){
@@ -86,14 +87,17 @@ void uikeceuser(MLLCustomerNodePtr &C, DLLProducts &L){
             cout << "\n--- Produk ---\n";
             cout << "1. Tambah ke Keranjang\n";
             cout << "0. Back\n";
+            cout << "--------------\n";
             cout << "Pilihan: ";
             cin >> action;
 
             if (action == 1) {
+                cout << "--------------\n";
                 cout << "Masukkan ID Produk: ";
                 cin >> productID;
                 cout << "Jumlah: ";
                 cin >> qty;
+                cout << "--------------\n";
 
                 prod = findProductByID(L, productID);
                 if (prod != nullptr) {
@@ -109,18 +113,33 @@ void uikeceuser(MLLCustomerNodePtr &C, DLLProducts &L){
             cout << "Total sementara: Rp" << total << endl;
             cout << "\n--- Keranjang ---\n";
             cout << "1. Ubah Jumlah\n";
+            cout << "2. Hapus Item\n";
             cout << "0. Back\n";
+            cout << "-----------------\n";
             cout << "Pilihan: ";
             cin >> action;
             switch(action){
                 case 1:
+                    cout << "-----------------\n";
                     cout << "Masukkan ID Produk: ";
                     cin >> productID;
                     cout << "Jumlah: ";
                     cin >> qty;
+                    cout << "-----------------\n";
                     cartitem = findCartItemByProductID(C, productID);
                     if(cartitem != nullptr){
                         editCartItemQuantity(cartitem,qty);
+                    }
+                    break;
+                case 2:
+                    cout << "-----------------\n";
+                    cout << "Masukkan ID Produk: ";
+                    cin >> productID;
+                    cout << "-----------------\n";
+                    if(deleteShoppingCartNode(C, productID) != nullptr){
+                        cout << "Item berhasil dihapus dari keranjang.\n";
+                    } else {
+                        cout << "Item tidak ditemukan di keranjang.\n";
                     }
                     break;
                 default:
@@ -131,8 +150,10 @@ void uikeceuser(MLLCustomerNodePtr &C, DLLProducts &L){
         case 3:
             //this just buys everything in the cart. the fucntion is already implemented.
             purchaseCartItems(C);
+            break;
         case 0:
             cout << "Logout Successful\n";
+            cout << "-----------------\n";
             break;
         default:
             cout <<"Pilihan Tidak ada. Mohon coba lagi.\n";
@@ -151,6 +172,7 @@ void uikeceadmin(MLLCustomerData &C, DLLProducts &L){
         cout << "2. Mengatur Produk\n";
         cout << "3. Lihat Pengguna\n";
         cout << "0. Logout\n";
+        cout << "=============================\n";
         cout << "Pilihan: ";
         cin >> adminMenu;
 
@@ -164,14 +186,17 @@ void uikeceadmin(MLLCustomerData &C, DLLProducts &L){
                 
                 cout << "\n--- Aksi Produk ---\n";
                 cout << "1. Tambah Produk\n";
+                cout << "2. Edit Produk\n";
+                cout << "3. Hapus Produk\n";
                 cout << "0. Back\n";
+                cout << "-------------------\n";
                 cout << "Pilihan: ";
                 cin >> action;
 
                 if (action == 1) {
                     string nama;
                     int stock, price;
-
+                    cout << "-------------------\n";
                     cout << "Nama Produk: ";
                     cin.ignore();
                     getline(cin, nama);
@@ -179,19 +204,75 @@ void uikeceadmin(MLLCustomerData &C, DLLProducts &L){
                     cin >> stock;
                     cout << "Harga: ";
                     cin >> price;
+                    cout << "-------------------\n";
                     addProducts(L, nama, stock, price);
                     cout << "Produk berhasil ditambahkan.\n";
+                } else if (action == 2){
+                    int prodID;
+                    cout << "ID Produk: ";
+                    cin >> prodID;
+                    DLLProductsNodePtr prod;
+                    prod = findProductByID(L,prodID);
+                    if(prod != nullptr){
+                    cout << "\n--- Aksi Produk ---\n";
+                    cout << "1. Ubah Nama\n";
+                    cout << "2. Tambah Jumlah Stok\n";
+                    cout << "3. Ubah Harga\n";
+                    cout << "4. Semuanya\n";
+                    cout << "0. Back\n";
+                    cout << "-------------------\n";
+                    cout << "Pilihan: ";
+                    cin >> action;
+                    cout << "-------------------\n";
+                    string newname;
+                    int newstock,newprice;
+                    switch(action){
+                        case 1:
+                            cout << "Nama Baru: ";    
+                            cin >> newname;
+                            break;
+                        case 2:
+                            cout << "Jumlah Stok Tambahan: ";
+                            cin >> newstock;
+                            break;
+                        case 3:
+                            cout << "Harga Baru: ";
+                            cin >> newprice;
+                            break;
+                        case 4:
+                            cout << "Nama Baru: ";    
+                            cin >> newname;
+                            cout << "Jumlah Stok Tambahan: ";
+                            cin >> newstock;
+                            cout << "Harga Baru: ";
+                            cin >> newprice;
+                            break;
+                        default:
+                            break;
+                    }
+                    cout << "-------------------\n";
+                    editProductInfo(prod,action,newname,newstock,newprice);
+                    }
+                } else if (action == 3){
+                    int prodID;
+                    cout << "ID Produk: ";
+                    cin >> prodID;
+                    if(deleteProductNode(L, prodID) != nullptr){
+                        cout << "Produk berhasil dihapus.\n";
+                    } else {
+                        cout << "Produk tidak ditemukan.\n";
+                    }
                 }
                 break;
             case 3:
                 printCustomers(C);
-                //action to do with customers (edit name, pw, maybe delete)
                 break;
             case 0:
-                cout << "Logout Berhasil\n";
+                cout << "Logout Successful\n";
+                cout << "-----------------\n";
                 break;
             default:
-                cout <<"Pilihan Tidak ada. Mohon coba lagi.\n";
+                cout <<"Pilihan Tidak ada. Mohon coba lagi.\n\n";
                 break;
         }
     } while (adminMenu != 0);

@@ -24,8 +24,11 @@ SLL             |           |--------
     first -> [ PNode ] <> [ PNode ] -> last
 
  ***********************/
+extern int TOTALCUSTOMERS; //global variable to keep track of total customers for ID assignment
+extern int TOTALPRODUCTS; //global variable to keep track of total products for ID assignment
  //may not be the best practice but whatever for this simple project it's fine
-//STRUCTS FOR THE LISTS
+
+ //STRUCTS FOR THE LISTS
 struct infotypeCustomer{ //infotype for customer/user
     int id;
     string name;

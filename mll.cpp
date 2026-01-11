@@ -25,6 +25,7 @@ MLLShoppingCartNodePtr createCartNode(infotypeShoppingCart data) { //creates a n
 DLLProductsNodePtr createProductNode(infotypeProducts data) { //creates a new product node, returns address of the new node
     DLLProductsNodePtr p = new DLLProductsNode;
     p->data = data;
+    p->prev = nullptr;
     p->next = nullptr;
     return p;
 }
@@ -95,8 +96,18 @@ DLLProductsNodePtr deleteProductNode(DLLProducts &L, int productID) {//deletes p
         return nullptr; // Product not found
     } else if (prev == nullptr) {
         L.first = p->next; // Deleting the first node
+        if (L.first != nullptr) {
+            L.first->prev = nullptr;
+        } else {
+            L.last = nullptr; // List is now empty
+        }
     } else {
         prev->next = p->next; // Bypass the node to be deleted
+        if(p->next != nullptr) {
+            p->next->prev = prev;
+        } else {
+            L.last = prev; // Deleted the last node
+        }
     }
     p->next = nullptr; // Isolate the node
     //because some shopping carts may still reference this product node, we will have to delete it later

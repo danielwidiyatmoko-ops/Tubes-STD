@@ -20,7 +20,9 @@ using namespace std;
 
  brrrrrr
 ****************************************/
-
+int TOTALCUSTOMERS= 4; //global variable to keep track of total customers for ID assignment
+int TOTALPRODUCTS =4; //global variable to keep track of total products for ID assignment
+ //may not be the best practice but whatever for this simple project it's fine
 
 int main() {
     MLLCustomerData CustomerData;
